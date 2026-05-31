@@ -14,7 +14,7 @@ binding = "AI"
 
 # 非敏感变量（可改模型而不动代码）
 [vars]
-AI_MODEL = "@cf/qwen/qwen1.5-14b-chat-awq"
+AI_MODEL = "@cf/meta/llama-3.1-8b-instruct"
 
 # ── 敏感信息用 secret，不写进仓库 ────────────────────────────
 # 以下三项均为 secret（加密存 Cloudflare，部署时自动保留）：
