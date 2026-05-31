@@ -1,0 +1,28 @@
+# Cloudflare Email Worker —— 邮件转发 + AI 摘要推送 Telegram
+# 文档: https://developers.cloudflare.com/email-routing/email-workers/
+
+name = "my-email-relay"          # ⚠️ 必须和你 dashboard 里现有的 Worker 名字一致，否则会新建一个重复 Worker
+main = "worker.js"
+compatibility_date = "2026-05-31"
+
+# account_id 也可用环境变量 CLOUDFLARE_ACCOUNT_ID 提供
+# account_id = "你的_account_id"
+
+# Workers AI 绑定 —— 代码里通过 env.AI 调用
+[ai]
+binding = "AI"
+
+# 非敏感变量（可改模型而不动代码）
+[vars]
+AI_MODEL = "@cf/meta/llama-3.1-8b-instruct"
+
+# ── 敏感信息用 secret，不写进仓库 ────────────────────────────
+# 以下三项均为 secret（加密存 Cloudflare，部署时自动保留）：
+#   npx wrangler secret put TELEGRAM_TOKEN
+#   npx wrangler secret put CHAT_ID
+#   npx wrangler secret put FORWARD_EMAIL
+#
+# ── Email Routing 说明 ──────────────────────────────────────
+# “哪个收件地址 → 触发本 Worker” 的路由规则在 Cloudflare Dashboard
+# (Email → Email Routing → Routing rules) 里配置，wrangler.toml 不管这部分。
+# 部署后记得在 dashboard 把对应地址的 action 指向这个 Worker。
