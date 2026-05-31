@@ -75,10 +75,7 @@ async function summarizeBody(env, subject, body) {
     const summary = (resp && (resp.response ?? resp.result?.response) || "").trim();
     if (!summary) throw new Error("空摘要");
 
-    return (
-      `🤖 <b>AI 摘要</b>\n<blockquote>${esc(summary)}</blockquote>\n\n` +
-      `📄 原文片段:\n<blockquote>${esc(truncate(cleaned, 800))}</blockquote>`
-    );
+    return `🤖 <b>AI 摘要</b>\n<blockquote>${esc(summary)}</blockquote>`;
   } catch (e) {
     // 降级：摘要失败就展示截断原文，并标注
     return (
