@@ -14,7 +14,7 @@ binding = "AI"
 
 # 非敏感变量（可改模型而不动代码）
 [vars]
-AI_MODEL = "@cf/meta/llama-3.1-8b-instruct"
+AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
 
 # ── 敏感信息用 secret，不写进仓库 ────────────────────────────
 # 以下三项均为 secret（加密存 Cloudflare，部署时自动保留）：
