@@ -5,6 +5,11 @@ name = "my-email-relay"          # ⚠️ 必须和你 dashboard 里现有的 Wo
 main = "worker.js"
 compatibility_date = "2026-05-31"
 
+# 邮件 Worker 不需要公网 HTTP 入口，关闭 workers.dev 预览 URL
+# （否则爬虫探测会让 dashboard 错误率虚高，也减少暴露面）
+preview_urls = false
+workers_dev = false
+
 # account_id 也可用环境变量 CLOUDFLARE_ACCOUNT_ID 提供
 # account_id = "你的_account_id"
 

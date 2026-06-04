@@ -1,4 +1,10 @@
 export default {
+  // 极简 HTTP 入口：邮件 Worker 本身不需要 HTTP，仅为兜底返回 200，
+  // 避免（万一开启预览 URL 时）被探测请求打成 500 导致错误率虚高。
+  async fetch() {
+    return new Response("ok", { status: 200 });
+  },
+
   async email(message, env, ctx) {
     const { TELEGRAM_TOKEN, CHAT_ID, FORWARD_EMAIL } = env;
 
