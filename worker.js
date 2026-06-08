@@ -38,7 +38,7 @@ export default {
     const text =
       `📬 <b>收到新邮件！</b>\n\n` +
       `👤 发件人: ${esc(from)}\n` +
-      `🎯 收件人: <b>${esc(to)}</b>\n` +
+      `🎯 收件人: <b>${esc(to)}</b>${FORWARD_EMAIL ? ` -> ${esc(FORWARD_EMAIL)}` : ""}\n` +
       `⏰ 时间: ${esc(dateStr)}\n` +
       `📝 主题: ${esc(subject)}\n\n` +
       summary;
