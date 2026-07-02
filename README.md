@@ -21,6 +21,12 @@ Cloudflare Email Worker：收到邮件后**转发到指定邮箱** + 用 Workers
 
 三个 secret 用 `npx wrangler secret put <名字>` 设置（加密存 Cloudflare，不进仓库，部署时自动保留）。
 
+`npx wrangler secret list` 显示配置项
+
+`echo "<value>" | npx wrangler secret put <key>`
+
+
+
 ## 部署
 
 ```bash
