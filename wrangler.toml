@@ -13,6 +13,11 @@ workers_dev = false
 # account_id 也可用环境变量 CLOUDFLARE_ACCOUNT_ID 提供
 # account_id = "你的_account_id"
 
+[observability.logs]
+enabled = true
+invocation_logs = true
+
+
 # Workers AI 绑定 —— 代码里通过 env.AI 调用
 [ai]
 binding = "AI"
@@ -22,10 +27,14 @@ binding = "AI"
 AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
 
 # ── 敏感信息用 secret，不写进仓库 ────────────────────────────
-# 以下三项均为 secret（加密存 Cloudflare，部署时自动保留）：
+# 以下几项均建议用 secret（加密存 Cloudflare，部署时自动保留）：
 #   npx wrangler secret put TELEGRAM_TOKEN
 #   npx wrangler secret put CHAT_ID
 #   npx wrangler secret put FORWARD_EMAIL
+#   npx wrangler secret put RESEND_API_KEY
+#   npx wrangler secret put RESEND_FROM
+# RESEND_FROM 可选；不配置时默认使用 "Mail Relay <收到邮件的地址>"。
+# 但最终 from 域名必须已经在 Resend 验证，否则 Resend 会拒绝发送。
 #
 # ── Email Routing 说明 ──────────────────────────────────────
 # “哪个收件地址 → 触发本 Worker” 的路由规则在 Cloudflare Dashboard
